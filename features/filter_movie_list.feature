@@ -35,6 +35,9 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   And I press "Refresh"
   Then the "ratings[PG]" checkbox should be checked
   And the "ratings[R]" checkbox should be checked
+  And the "ratings[PG-13]" checkbox should not be checked
+  And the "ratings[NC-17]" checkbox should not be checked
+  And the "ratings[G]" checkbox should not be checked
   And I should see "The Terminator"
   And I should see "When Harry Met Sally"
   And I should see "The Incredibles"
@@ -47,6 +50,22 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
 
 Scenario: no ratings selected
   # see assignment
+  Given I uncheck the following ratings: G, PG, R, PG-13, NC-17
+  And I press "Refresh"
+  Then I should see no movies
+  And the "ratings[G]" checkbox should not be checked
+  And the "ratings[PG]" checkbox should not be checked
+  And the "ratings[R]" checkbox should not be checked
+  And the "ratings[PG-13]" checkbox should not be checked
+  And the "ratings[NC-17]" checkbox should not be checked
 
 Scenario: all ratings selected
   # see assignment
+  Given I check the following ratings: G, PG, R, PG-13, NC-17
+  And I press "Refresh"
+  Then I should see all of the movies
+  And the "ratings[G]" checkbox should be checked
+  And the "ratings[PG]" checkbox should be checked
+  And the "ratings[R]" checkbox should be checked
+  And the "ratings[PG-13]" checkbox should be checked
+  And the "ratings[NC-17]" checkbox should be checked
