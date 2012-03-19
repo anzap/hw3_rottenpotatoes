@@ -12,7 +12,6 @@ module NavigationHelpers
   #
   def path_to(page_name)
     case page_name
-
     when /^the home\s?page$/
       '/'
 
@@ -21,6 +20,8 @@ module NavigationHelpers
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
+    when /^the RottenPotatoes home page$/
+      '/movies'
 
     else
       begin
